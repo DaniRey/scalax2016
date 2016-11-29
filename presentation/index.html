@@ -48,12 +48,10 @@
             </p>
         </section>
         <section data-background-image="lib/images/poll.jpg">
-            <h3>Poll</h3>
-            <a href="https://www.flickr.com/photos/newspaperclub/8147326124/" class="img-source">Newspaper Club</a>
+            <a href="https://www.flickr.com/photos/johnkeane/5695179697/" class="img-source">by John Keane</a>
         </section>
          <section data-background-image="lib/images/change.jpg">
-            <h3>Change</h3>
-             <a href="https://www.flickr.com/photos/newspaperclub/8147326124/" class="img-source">Newspaper Club</a>
+             <a href="https://www.flickr.com/photos/dreamsjung/6145962285" class="img-source">by Jason Taellious</a>
         </section>
         <section>
             <h3>ScalaTest is amazing!</h3>
@@ -81,10 +79,20 @@ class ExampleSpec extends FlatSpec with Matchers {
             </code></pre>
         </section>
 
-        <section data-background="lib/images/backend.jpg">
-            <h3 class="fragment">Selenium is powerful</h3>
+        <section>
+            <h3>Selenium is powerful</h3>
             <pre class="stretch"><code>
-                Example from scalatest.org
+class BlogSpec extends FlatSpec with ShouldMatchers with WebBrowser {
+
+  implicit val webDriver: WebDriver = new HtmlUnitDriver
+
+  val host = "http://localhost:9000/"
+
+  "The blog app home page" should "have the correct title" in {
+    go to (host + "index.html")
+    pageTitle should be ("Awesome Blog")
+  }
+}
             </code></pre>
         </section>
 
@@ -92,7 +100,7 @@ class ExampleSpec extends FlatSpec with Matchers {
         <section>
             <h3>but cumbersome</h3>
             <pre class="stretch"><code>
-               package org.scalawebtest.demo
+package org.scalawebtest.demo
 
 import org.openqa.selenium.By.ByCssSelector
 
@@ -128,7 +136,7 @@ class SeleniumSpec extends DemoBaseSpec {
         </section>
 
         <section>
-            <h3>errors messages are generic</h3>
+            <h3>error messages are generic</h3>
             <pre class="stretch"><code>
 None.get
 java.util.NoSuchElementException: None.get
@@ -165,38 +173,38 @@ class GaugeSpec extends DemoBaseSpec {
 
   "The start page" should "contain the tab navigation" in {
     fits(
-      <ul class="numbers-summary">
-        <li class="commits">
-          <a href="/unic/ScalaWebTest/commits/master">
-            <span>@regex \d+</span>
+      &lt;ul class="numbers-summary"&gt;
+        &lt;li class="commits"&gt;
+          &lt;a href="/unic/ScalaWebTest/commits/master"&gt;
+            &lt;span&gt;@regex \d+&lt;/span&gt;
             commits
-          </a>
-        </li>
-        <li>
-          <a href="/unic/ScalaWebTest/branches">
-            <span>@regex \d+</span>
+          &lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+          &lt;a href="/unic/ScalaWebTest/branches"&gt;
+            &lt;span&gt;@regex \d+&lt;/span&gt;
             branches
-          </a>
-        </li>
-        <li>
-          <a href="/unic/ScalaWebTest/releases">
-            <span>@regex \d+</span>
+          &lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+          &lt;a href="/unic/ScalaWebTest/releases"&gt;
+            &lt;span&gt;@regex \d+&lt;/span&gt;
             releases
-          </a>
-        </li>
-        <li>
-          <a href="/unic/ScalaWebTest/graphs/contributors">
-            <span>@regex \d+</span>
+          &lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+          &lt;a href="/unic/ScalaWebTest/graphs/contributors"&gt;
+            &lt;span&gt;@regex \d+&lt;/span&gt;
             contributors
-          </a>
-        </li>
-        <li>
-          <a href="https://github.com/unic/ScalaWebTest/blob/master/LICENSE">
-            <svg></svg>
+          &lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+          &lt;a href="https://github.com/unic/ScalaWebTest/blob/master/LICENSE"&gt;
+            &lt;svg&gt;&lt;/svg&gt;
             Apache-2.0
-          </a>
-        </li>
-      </ul>
+          &lt;/a&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
     )
   }
 }
@@ -207,53 +215,66 @@ class GaugeSpec extends DemoBaseSpec {
             <h3>Specific error messages</h3>
             <pre class="stretch"><code>
 Misfitting Attribute: [href] in
-                [HtmlAnchor[<a data-pjax="" href="/unic/ScalaWebTest/releases">]]
+                [HtmlAnchor[&lt;a data-pjax="" href="/unic/ScalaWebTest/releases"&gt;]]
                 with value[/unic/ScalaWebTest/releases]
                 didn't equal [/unic/ScalaWebTest/graphs/contributor]
 Misfitting Attribute: [href] in
-                [HtmlAnchor[<a href="/unic/ScalaWebTest/graphs/contributors">]]
+                [HtmlAnchor[&lt;a href="/unic/ScalaWebTest/graphs/contributors"&gt;]]
                 with value[/unic/ScalaWebTest/graphs/contributors]
                 didn't equal [/unic/ScalaWebTest/graphs/contributor]
 Misfitting Attribute: [href] in
-                [HtmlAnchor[<a href="https://github.com/unic/ScalaWebTest/blob/master/LICENSE">]]
+                [HtmlAnchor[&lt;a href="https://github.com/unic/ScalaWebTest/blob/master/LICENSE"&gt;]]
                 with value[https://github.com/unic/ScalaWebTest/blob/master/LICENSE]
                 didn't equal [/unic/ScalaWebTest/graphs/contributor]
+
 Current document does not match provided gauge:
-<ul class="numbers-summary">
-        <li class="commits">
-          <a href="/unic/ScalaWebTest/commits/master">
-            <span>@regex \d+</span>
+&lt;ul class="numbers-summary"&gt;
+        &lt;li class="commits"&gt;
+          &lt;a href="/unic/ScalaWebTest/commits/master"&gt;
+            &lt;span&gt;@regex \d+&lt;/span&gt;
             commits
-          </a>
-        </li>
-        <li>
-          <a href="/unic/ScalaWebTest/branches">
-            <span>@regex \d+</span>
+          &lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+          &lt;a href="/unic/ScalaWebTest/branches"&gt;
+            &lt;span&gt;@regex \d+&lt;/span&gt;
             branches
-          </a>
-        </li>
-        <li>
-          <a href="/unic/ScalaWebTest/releases">
-            <span>@regex \d+</span>
+          &lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+          &lt;a href="/unic/ScalaWebTest/releases"&gt;
+            &lt;span&gt;@regex \d+&lt;/span&gt;
             releases
-          </a>
-        </li>
-        <li>
-          <a href="/unic/ScalaWebTest/graphs/contributor">
-            <span>@regex \d+</span>
+          &lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+          &lt;a href="/unic/ScalaWebTest/graphs/contributor"&gt;
+            &lt;span&gt;@regex \d+&lt;/span&gt;
             contributors
-          </a>
-        </li>
-        <li>
-          <a href="https://github.com/unic/ScalaWebTest/blob/master/LICENSE">
-            <svg></svg>
+          &lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+          &lt;a href="https://github.com/unic/ScalaWebTest/blob/master/LICENSE"&gt;
+            &lt;svg&gt;&lt;/svg&gt;
             Apache-2.0
-          </a>
-        </li>
-      </ul>
+          &lt;/a&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
             </code></pre>
         </section>
 
+        <section data-background-image="lib/images/snap_gauge.jpg">
+            <a href="http://www.ebay.de/itm/Rachenlehre-35h5-Grenzrachenlehre-doppelmaeulig-RHV2363-/232108829224" class="img-source">by hr68</a>
+        </section>
+
+        <section data-background-image="lib/images/caliber.jpg">
+            <a href="https://www.youtube.com/watch?v=S6RMqubrUqM" class="img-source">by Grinsgesicht</a>
+        </section>
+
+        <section>
+            <h3>Live Demo</h3>
+            <p class="fragment">what could possibly go wrong</p>
+        </section>
     </div>
 
 </div>

@@ -45,7 +45,7 @@ body {
   font-weight: normal;
   line-height: 1.2;
   letter-spacing: 0em;
-  text-transform: none;
+  text-transform: uppercase;
   text-shadow: none;
   word-wrap: break-word; }
 
@@ -353,7 +353,7 @@ body {
   .reveal .img-source {
     display: block;
     font-size: 0.8em;
-    margin-top: 10em; }
+    margin-top: 60%; }
   .reveal iframe {
     border: 1px solid #333; }
   .reveal .result {
