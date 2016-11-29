@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>ScalaWebTest</title>
+
+    <meta name="description" content="web development crash course">
+    <meta name="author" content="Thomas Jaggi &amp; Daniel Rey">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/unic.css" id="theme">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides anything">
+        <section data-no-logo>
+            <h1>ScalaWebTest</h1>
+            <p>
+                a new approach to integration tests for web applications
+            </p>
+        </section>
+        <section data-background-image="lib/images/poll.jpg">
+            <h3>Poll</h3>
+            <a href="https://www.flickr.com/photos/newspaperclub/8147326124/" class="img-source">Newspaper Club</a>
+        </section>
+         <section data-background-image="lib/images/change.jpg">
+            <h3>Change</h3>
+             <a href="https://www.flickr.com/photos/newspaperclub/8147326124/" class="img-source">Newspaper Club</a>
+        </section>
+        <section>
+            <h3>ScalaTest is amazing!</h3>
+            <pre class="stretch"><code>
+import collection.mutable.Stack
+import org.scalatest._
+
+class ExampleSpec extends FlatSpec with Matchers {
+
+  "A Stack" should "pop values in last-in-first-out order" in {
+    val stack = new Stack[Int]
+    stack.push(1)
+    stack.push(2)
+    stack.pop() should be (2)
+    stack.pop() should be (1)
+  }
+
+  it should "throw NoSuchElementException if an empty stack is popped" in {
+    val emptyStack = new Stack[Int]
+    a [NoSuchElementException] should be thrownBy {
+      emptyStack.pop()
+    }
+  }
+}
+            </code></pre>
+        </section>
+
+        <section data-background="lib/images/backend.jpg">
+            <h3 class="fragment">Selenium is powerful</h3>
+            <pre class="stretch"><code>
+                Example from scalatest.org
+            </code></pre>
+        </section>
+
+
+        <section>
+            <h3>but cumbersome</h3>
+            <pre class="stretch"><code>
+               package org.scalawebtest.demo
+
+import org.openqa.selenium.By.ByCssSelector
+
+class SeleniumSpec extends DemoBaseSpec {
+  path = "/startpage.html"
+
+  "The start page" should "contain the tab navigation" in {
+    val commitLink = find(CssSelectorQuery("ul.numbers-summary > li.commits > a")).get
+    commitLink.attribute("href").get should endWith("/unic/ScalaWebTest/commits/master")
+    commitLink.text should endWith("commits")
+
+    val summaryLinks = findAll(CssSelectorQuery("ul.numbers-summary > li > a"))
+    val branchLink = summaryLinks.find(_.attribute("href").get endsWith "/unic/ScalaWebTest/branches").get
+    val branchSpan = branchLink.underlying.findElement(new ByCssSelector("span"))
+    branchSpan.getText.trim should fullyMatch regex "\\d+"
+    branchLink.text should endWith("branches")
+
+    val releaseLink = summaryLinks.find(_.attribute("href").get endsWith "/unic/ScalaWebTest/releases").get
+    val releaseSpan = releaseLink.underlying.findElement(new ByCssSelector("span"))
+    releaseSpan.getText.trim should fullyMatch regex "\\d+"
+    releaseLink.text should endWith("releases")
+
+    val contributorsLink = summaryLinks.find(_.attribute("href").get endsWith "/unic/ScalaWebTest/graphs/contributors").get
+    val contributorsSpan = contributorsLink.underlying.findElement(new ByCssSelector("span"))
+    contributorsSpan.getText.trim should fullyMatch regex "\\d+"
+    contributorsLink.text should endWith("contributors")
+
+    val licenceLink = summaryLinks.find(_.attribute("href").get endsWith "https://github.com/unic/ScalaWebTest/blob/master/LICENSE").get
+    licenceLink.text should endWith("Apache-2.0")
+  }
+}
+            </code></pre>
+        </section>
+
+        <section>
+            <h3>errors messages are generic</h3>
+            <pre class="stretch"><code>
+None.get
+java.util.NoSuchElementException: None.get
+	at scala.None$.get(Option.scala:349)
+	at scala.None$.get(Option.scala:347)
+	at org.scalawebtest.demo.SeleniumSpec.$anonfun$new$1(SeleniumSpec.scala:24)
+	at org.scalatest.OutcomeOf.outcomeOf(OutcomeOf.scala:85)
+	at org.scalatest.OutcomeOf.outcomeOf$(OutcomeOf.scala:83)
+	at org.scalatest.OutcomeOf$.outcomeOf(OutcomeOf.scala:104)
+	at org.scalatest.Transformer.apply(Transformer.scala:22)
+	at org.scalatest.Transformer.apply(Transformer.scala:20)
+	at org.scalatest.FlatSpecLike$$anon$1.apply(FlatSpecLike.scala:1682)
+	at org.scalatest.TestSuite.withFixture(TestSuite.scala:196)
+	at org.scalatest.TestSuite.withFixture$(TestSuite.scala:195)
+	at org.scalatest.FlatSpec.withFixture(FlatSpec.scala:1685)
+	at org.scalatest.FlatSpecLike.invokeWithFixture$1(FlatSpecLike.scala:1680)
+	at org.scalatest.FlatSpecLike.$anonfun$runTest$1(FlatSpecLike.scala:1692)
+	at org.scalatest.SuperEngine.runTestImpl(Engine.scala:289)
+	at org.scalatest.FlatSpecLike.runTest(FlatSpecLike.scala:1692)
+	at org.scalatest.FlatSpecLike.runTest$(FlatSpecLike.scala:1674)
+...
+            </code></pre>
+        </section>
+
+        <section>
+            <h3>Readable tests</h3>
+            <pre class="stretch"><code>
+package org.scalawebtest.demo
+
+import org.scalawebtest.core.gauge.Gauge.fits
+
+class GaugeSpec extends DemoBaseSpec {
+  path = "/startpage.html"
+
+  "The start page" should "contain the tab navigation" in {
+    fits(
+      <ul class="numbers-summary">
+        <li class="commits">
+          <a href="/unic/ScalaWebTest/commits/master">
+            <span>@regex \d+</span>
+            commits
+          </a>
+        </li>
+        <li>
+          <a href="/unic/ScalaWebTest/branches">
+            <span>@regex \d+</span>
+            branches
+          </a>
+        </li>
+        <li>
+          <a href="/unic/ScalaWebTest/releases">
+            <span>@regex \d+</span>
+            releases
+          </a>
+        </li>
+        <li>
+          <a href="/unic/ScalaWebTest/graphs/contributors">
+            <span>@regex \d+</span>
+            contributors
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/unic/ScalaWebTest/blob/master/LICENSE">
+            <svg></svg>
+            Apache-2.0
+          </a>
+        </li>
+      </ul>
+    )
+  }
+}
+            </code></pre>
+        </section>
+
+        <section>
+            <h3>Specific error messages</h3>
+            <pre class="stretch"><code>
+Misfitting Attribute: [href] in
+                [HtmlAnchor[<a data-pjax="" href="/unic/ScalaWebTest/releases">]]
+                with value[/unic/ScalaWebTest/releases]
+                didn't equal [/unic/ScalaWebTest/graphs/contributor]
+Misfitting Attribute: [href] in
+                [HtmlAnchor[<a href="/unic/ScalaWebTest/graphs/contributors">]]
+                with value[/unic/ScalaWebTest/graphs/contributors]
+                didn't equal [/unic/ScalaWebTest/graphs/contributor]
+Misfitting Attribute: [href] in
+                [HtmlAnchor[<a href="https://github.com/unic/ScalaWebTest/blob/master/LICENSE">]]
+                with value[https://github.com/unic/ScalaWebTest/blob/master/LICENSE]
+                didn't equal [/unic/ScalaWebTest/graphs/contributor]
+Current document does not match provided gauge:
+<ul class="numbers-summary">
+        <li class="commits">
+          <a href="/unic/ScalaWebTest/commits/master">
+            <span>@regex \d+</span>
+            commits
+          </a>
+        </li>
+        <li>
+          <a href="/unic/ScalaWebTest/branches">
+            <span>@regex \d+</span>
+            branches
+          </a>
+        </li>
+        <li>
+          <a href="/unic/ScalaWebTest/releases">
+            <span>@regex \d+</span>
+            releases
+          </a>
+        </li>
+        <li>
+          <a href="/unic/ScalaWebTest/graphs/contributor">
+            <span>@regex \d+</span>
+            contributors
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/unic/ScalaWebTest/blob/master/LICENSE">
+            <svg></svg>
+            Apache-2.0
+          </a>
+        </li>
+      </ul>
+            </code></pre>
+        </section>
+
+    </div>
+
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        anything: [
+            {
+                className: "random",
+                defaults: {min: 0, max: 9},
+                initialize: (function (container, options) {
+                    container.innerHTML = Math.trunc(options.min + Math.random() * (options.max - options.min + 1));
+                })
+            }
+        ],
+        dependencies: [
+            {
+                src: 'lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            }
+            },
+            {
+                src: 'plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            },
+            {src: 'plugin/zoom-js/zoom.js', async: true},
+            {src: 'plugin/notes/notes.js', async: true},
+            {src: 'bower_components/reveal.js-plugins/anything/anything.js', async: true},
+            {src: 'bower_components/reveal.js-plugins/mathsvg/math.js', async: true}
+        ]
+
+    });
+
+</script>
+
+</body>
+</html>

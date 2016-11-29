@@ -1,0 +1,174 @@
+/**
+ * Unic theme for reveal.js.
+ *
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+
+// Include theme-specific fonts
+@import url(https://fonts.googleapis.com/css?family=Quicksand:400,700,400italic,700italic);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
+
+
+// Override theme settings (see ../template/settings.scss)
+$logoColor: #a4c326;
+$mainFont: 'Open Sans', sans-serif;
+$mainColor: #333;
+$headingFont: 'Georgia', sans-serif;
+$headingColor: #333;
+$headingLetterSpacing: 0em;
+$headingTextShadow: none;
+$backgroundColor: #f7fbfc;
+$linkColor: $logoColor;
+$linkColorHover: lighten( $linkColor, 20% );
+$selectionBackgroundColor: #134674;
+
+// Fix links so they are not cut off
+.reveal a {
+	line-height: 1.3em;
+}
+
+// Background generator
+@mixin bodyBackground() {
+	//@include radial-gradient( #8fa01e, #eae66c );
+	background-color: white;
+}
+
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+.reveal {
+	font-size: 30px;
+	background-color: white;
+
+	.slide-background:not(.no-logo) {
+		&:after {
+			content: "";
+			display: block;
+			width: 2em;
+			height: 2em;
+			right: 1em;
+			background: url('../../../lib/images/unic/unic-logo.png') 0 0 no-repeat $logoColor;
+			background-size: 100%;
+			position: absolute;
+			z-index: 3;
+		}
+	}
+
+	.controls {
+		/*
+		button {
+			border: 0;
+		}
+		.navigate-left,
+		.navigate-right {
+			width: 40px;
+			height: 12px;
+		}
+		.navigate-up,
+		.navigate-down {
+			width: 12px;
+			height: 40px;
+		}
+		.navigate-left {
+			background: url('/lib/images/unic/arrow-left.png') 0 0 no-repeat transparent;
+			background-size: 100%;
+			top: 50px;
+		}
+		.navigate-right {
+			background: url('/lib/images/unic/arrow-right.png') 0 0 no-repeat transparent;
+			background-size: 100%;
+		}
+		.navigate-up {
+			background: url('/lib/images/unic/arrow-up.png') 0 0 no-repeat transparent;
+			background-size: 100%;
+			left: 50px;
+		}
+		.navigate-down {
+			background: url('/lib/images/unic/arrow-down.png') 0 0 no-repeat transparent;
+			background-size: 100%;
+			left: 50px;
+		}
+		*/
+	}
+
+	.progres {
+		background: rgba(90, 90, 90, 0.3);
+	}
+
+	.try-it {
+		font-size: 0.7em;
+	}
+
+	.text-light {
+		@mixin textShadow($shadowSize, $shadowColor) {
+			text-shadow: (-$shadowSize) (-$shadowSize) $shadowSize $shadowColor,
+			               $shadowSize  (-$shadowSize) $shadowSize $shadowColor,
+			             (-$shadowSize)   $shadowSize  $shadowSize $shadowColor,
+			               $shadowSize    $shadowSize  $shadowSize $shadowColor;
+		}
+
+		h3,
+		p,
+		ul li {
+			color: white;
+			@include textShadow(0.02em, rgba(#000, 0.9));
+		}
+		
+		a {
+			color: $logoColor;
+			@include textShadow(0.02em, rgba(#000, 0.7));
+		}
+	}
+
+	p i,
+	li i {
+		color: #983E50;
+	}
+	a i {
+		color: $logoColor;
+	}
+
+	.img-source {
+		display: block;
+		font-size: 0.8em;
+		margin-top: 10em;
+	}
+
+	iframe {
+		border: 1px solid #333;
+	}
+
+	.result {
+		display: inline-block;
+	}
+
+	.xml .javascript,
+	.javascript .xml {
+		opacity: 0.9;
+	}
+
+	h4,
+	h5 {
+		text-transform: none;
+	}
+
+	h5 {
+		font-size: 0.8em;
+	}
+
+	.no-border {
+		border: 0;
+		box-shadow: none;
+	}
+}
+

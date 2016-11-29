@@ -1,0 +1,4 @@
+remote_control.jpg, https://www.flickr.com/photos/aotaro/24206843682/, https://www.flickr.com/photos/aotaro/, Aotaro
+amazing.jpg, https://www.flickr.com/photos/ericrobinson/3687389948/, https://www.flickr.com/photos/ericrobinson/, Eric Robinson
+poll.jpg, https://www.flickr.com/photos/johnkeane/5695179697/, https://www.flickr.com/photos/johnkeane/, John Keane
+change.jpg, https://www.flickr.com/photos/dreamsjung/6145962285/, https://www.flickr.com/photos/dreamsjung/, Jason Taellious

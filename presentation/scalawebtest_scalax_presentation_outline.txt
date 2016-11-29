@@ -1,0 +1,113 @@
+Who of you write web applications?
+Who of you writes integration tests?
+Does anyone enjoy doing so?
+Let me change that!
+
+I will write an integration test for an application, which you don't know. It will take 1 minute and it will be easy to read for you!
+
+Oftentimes we have frontend and backend developers. To verify their own code, many frontend developers create prototypes, which are also used to tell the backend team, what the HTML structure should look like. Wouldn't it be nice to test your backend, based on the prototype the frontend team created? No worries, we're not going to depend on the prototype. But we will copy its HTML, to create our integration test. Instead of verifying for an exact match we use a concept from manufacturing, so called gauges or calibers. These are special built tools, which can be held against the workpice, to quickly see whether it matches the given acceptance criterias or not. Such as this caliber, to test whether a bicycle chain is still ok, or was lenghtened too much.
+
+Lets make sure we render the correct HTML for the navigation. Lets have a look at the navigation within the frontend prototype.
+
+<div id="nav-wrapper">
+    <nav id="nav">
+        <ul>
+            <li class="home"><a href="#">Home</a></li>
+            <li class="active"><a href="#" title="active">active</a></li>
+            <li><a href="#" title="inactive">inactive</a></li>
+        </ul>
+    </nav>
+</div>
+
+Now lets create a test to make sure that the following page ... contains a navigation, which matches the structure from the prototype.
+
+<div id="nav-wrapper">
+    <!-- Nav -->
+    <nav id="nav">
+        <ul>
+            <li class="home"><a href="/index.html">Home</a></li>
+            <li class="active"><a href="/documentation.html" title="Documentation">Documentation</a></li>
+            <li><a href="/download.html" title="Download">Download</a></li>
+            <li><a href="/community.html" title="Community">Community</a></li>
+        </ul>
+    </nav>
+</div>
+
+
+
+
+package org.scalawebtest.integration.gauge
+
+import org.scalawebtest.core.gauge.Gauge.fit
+import org.scalawebtest.integration.ScalaWebTestBaseSpec
+
+class SimpleGaugeSpec extends ScalaWebTestBaseSpec {
+
+  path = "/documentation.html"
+
+  "The navigation" should "contain our navigation links in correct order" in {
+    fit(
+      <div id="nav-wrapper">
+          <!-- Nav -->
+          <nav id="nav">
+              <ul>
+                  <li class="home"><a>Home</a></li>
+                  <li class="active"><a>Documentation</a></li>
+                  <li><a>Download</a></li>
+                  <li><a>Community</a></li>
+              </ul>
+          </nav>
+      </div>)
+  }
+}
+
+
+As you could see, our gauges was not defined using the exact HTML as rendered by the target page, but the test was successful nevertheless. This is intended and  the reason why these tests are easy to write and remain stable. Following rules apply.
+ 
+(use scribble to show this)
+Inbetween the HTML elements defined in the gauge, any elements may exist. (let elements appear inbetween)
+Elements defined in the gauge may contain additional attributes. (let attributes appear inbetween)
+The class attribute may contain additional classes. (let class attributes appear)
+All elements defined in the gauge have to exist with correct nesting and order. (switch two element - mark red, move <li> on same level as <ul> and mark red)
+
+Some additional features exist
+package org.scalawebtest.integration.gauge
+
+import org.scalawebtest.core.gauge.Gauge.fit
+import org.scalawebtest.integration.ScalaWebTestBaseSpec
+
+class SimpleGaugeSpec extends ScalaWebTestBaseSpec {
+
+  path = "/documentation.html"
+
+  "The navigation" should "contain our navigation links in correct order" in {
+    fit(
+      <div id="nav-wrapper">
+          <!-- Nav -->
+          <nav id="nav">
+              <ul>
+                  <li class="home"><a href="@contains home">Home</a></li>
+                  <li class="active"><a href="@regex [a-zA-Z]+\.html">Documentation</a></li>
+                  <li><a>@contains load</a></li>
+                  <li><a>@regex [A-Z]+[a-z]+</a></li>
+              </ul>
+          </nav>
+      </div>)
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+New Features
+============================
+- @NotContains as attribute matcher <a src="@NotContains whatever"> or <a title="@NotContains">
+- AEM module populates a properties and parentProperties map for comparison, i.e. <h1>{properties.title}</h1>
+- wrapper for HTML driver to retrieve status code
