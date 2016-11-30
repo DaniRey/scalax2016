@@ -272,6 +272,129 @@ Current document does not match provided gauge:
         </section>
 
         <section>
+            <style>
+                #nav
+                {
+                }
+
+                #nav-wrapper
+                {
+                    background: rgba(0,0,0,.1);
+                    position: relative;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                }
+
+                #nav > ul
+                {
+                    margin: 0;
+                    padding: 0;
+                    text-align: center;
+                }
+
+                #nav > ul > li
+                {
+                    display: inline-block;
+                    border-right: 1px solid;
+                    border-color: rgba(255,255,255,.1);
+                }
+
+                #nav > ul > li:last-child
+                {
+                    padding-right: 0;
+                    border-right: none;
+                }
+
+                #nav > ul > li > a,
+                #nav > ul > li > span
+                {
+                    display: inline-block;
+                    padding: 1.5em 1.5em;
+                    letter-spacing: 0.06em;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    font-size: 1.1em;
+                    outline: 0;
+                    color: #FFF;
+                }
+
+                #nav ul li.home a {
+                    color: #a4c326;
+                }
+            </style>
+            <div id="nav-wrapper">
+                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li class="home"><a href="#">Home</a></li>
+
+                        <li><a href="#" title="elem1">elem1</a></li>
+
+                        <li><a href="#" title="elem2">elem2</a></li>
+
+                    </ul>
+                </nav>
+            </div>
+
+            <pre>
+    <code>
+&lt;div id="nav-wrapper"&gt;
+    &lt;!-- Nav --&gt;
+    &lt;nav id="nav"&gt;
+        &lt;ul&gt;
+                &lt;li class="home"&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+
+                &lt;li&gt;&lt;a href="#" title="elem1"&gt;elem1&lt;/a&gt;&lt;/li&gt;
+
+                &lt;li"&gt;&lt;a href="#" title="elem2"&gt;elem2&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+&lt;/div&gt;
+    </code>
+</pre>
+        </section>
+
+        <section>
+            <style>
+                pre.manual > span
+                {
+                    font-weight: bold;
+                    color: #0c3766;
+                }
+
+                pre.manual > span.irrelevant
+                {
+                    color: #6b6b6b;
+                }
+            </style>
+        <pre class="manual">
+<span class="frag1 irrelevant">&lt;!DOCTYPE html&gt;</span>
+<span class="frag1 irrelevant">&lt;html lang="en"&gt;</span>
+<span class="frag1 irrelevant">&lt;head&gt;</span>
+<span class="frag1 irrelevant">    &lt;meta charset="UTF-8"&gt;</span>
+<span class="frag1 irrelevant">    &lt;title&gt;Title&lt;/title&gt;</span>
+<span class="frag1 irrelevant">&lt;/head&gt;</span>
+<span class="frag1 irrelevant">&lt;body&gt;</span>
+<span>&lt;div id="nav-wrapper"&gt;</span>
+<span class="frag2 irrelevant">    &lt;img id="logo" src="https://www.scalawebtest.org/images/logo.png"&gt;</span>
+<span>    &lt;!-- Nav --&gt;</span>
+<span>    &lt;nav id="nav"&gt;</span>
+<span>        &lt;ul&gt;</span>
+<span>                &lt;li class="home"&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;</span>
+
+<span>                &lt;li&gt;&lt;a href="#" </span><span class="frag3 irrelevant">target="_blank"</span><span> title="elem1"&gt;elem1&lt;/a&gt;&lt;/li&gt;</span>
+
+<span>                &lt;li"&gt;&lt;a href="#" title="elem2"&gt;elem2&lt;/a&gt;&lt;/li&gt;</span>
+<span>        &lt;/ul&gt;</span>
+<span>    &lt;/nav&gt;</span>
+<span>&lt;/div&gt;</span>
+<span class="frag1 irrelevant">&lt;/body&gt;</span>
+<span class="frag1 irrelevant">&lt;/html&gt;</span>
+        </pre>
+        </section>
+
+        <section>
             <h3>Live Demo</h3>
             <p class="fragment">what could possibly go wrong</p>
         </section>
