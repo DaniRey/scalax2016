@@ -50,8 +50,8 @@
         <section data-background-image="lib/images/poll.jpg">
             <a href="https://www.flickr.com/photos/johnkeane/5695179697/" class="img-source">by John Keane</a>
         </section>
-         <section data-background-image="lib/images/change.jpg">
-             <a href="https://www.flickr.com/photos/dreamsjung/6145962285" class="img-source">by Jason Taellious</a>
+        <section data-background-image="lib/images/change.jpg">
+            <a href="https://www.flickr.com/photos/dreamsjung/6145962285" class="img-source">by Jason Taellious</a>
         </section>
         <section>
             <h3>ScalaTest is amazing!</h3>
@@ -161,6 +161,150 @@ java.util.NoSuchElementException: None.get
             </code></pre>
         </section>
 
+
+        <section data-background-image="lib/images/snap_gauge.jpg">
+            <a href="http://www.ebay.de/itm/Rachenlehre-35h5-Grenzrachenlehre-doppelmaeulig-RHV2363-/232108829224" class="img-source">by hr68</a>
+        </section>
+
+        <section data-background-image="lib/images/caliber.jpg">
+            <a href="https://www.youtube.com/watch?v=S6RMqubrUqM" class="img-source">by Grinsgesicht</a>
+        </section>
+
+        <section>
+            <style>
+                #nav {
+                }
+
+                #nav-wrapper {
+                    background: rgba(0, 0, 0, .1);
+                    position: relative;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                }
+
+                #nav > ul {
+                    margin: 0;
+                    padding: 0;
+                    text-align: center;
+                }
+
+                #nav > ul > li {
+                    display: inline-block;
+                    border-right: 1px solid;
+                    border-color: rgba(255, 255, 255, .1);
+                }
+
+                #nav > ul > li:last-child {
+                    padding-right: 0;
+                    border-right: none;
+                }
+
+                #nav > ul > li > a,
+                #nav > ul > li > span {
+                    display: inline-block;
+                    padding: 1.5em 1.5em;
+                    letter-spacing: 0.06em;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    font-size: 1.1em;
+                    outline: 0;
+                    color: #FFF;
+                }
+
+                #nav ul li.home a {
+                    color: #a4c326;
+                }
+            </style>
+            <div id="nav-wrapper">
+                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li class="home"><a href="#">Home</a></li>
+
+                        <li><a href="#" title="elem1">elem1</a></li>
+
+                        <li><a href="#" title="elem2">elem2</a></li>
+
+                    </ul>
+                </nav>
+            </div>
+
+            <pre>
+    <code>
+&lt;div id="nav-wrapper"&gt;
+    &lt;!-- Nav --&gt;
+    &lt;nav id="nav"&gt;
+        &lt;ul&gt;
+                &lt;li class="home"&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+
+                &lt;li&gt;&lt;a href="#" title="elem1"&gt;elem1&lt;/a&gt;&lt;/li&gt;
+
+                &lt;li"&gt;&lt;a href="#" title="elem2"&gt;elem2&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+&lt;/div&gt;
+    </code>
+</pre>
+        </section>
+
+        <section>
+            <style>
+                pre.manual > span {
+                    font-weight: bold;
+                    color: #0c3766;
+                }
+
+                pre.manual > span.irrelevant {
+                    color: #6b6b6b;
+                }
+
+                pre.manual > span.breaking {
+                    color: #6b280b;
+                }
+            </style>
+            <script>
+                var currentFragment = 0;
+                document.onkeypress = function (ev) {
+                    if (String.fromCharCode(ev.charCode) == "d") {
+                        var toHide = document.getElementsByClassName("frag" + currentFragment);
+                        for (var x = 0; x < toHide.length; x++) {
+                            toHide[x].hidden = true;
+                        }
+                        currentFragment += 1;
+                        var toShow = document.getElementsByClassName("frag" + currentFragment);
+                        for (var y = 0; y < toShow.length; y++) {
+                            toShow[y].hidden = false;
+                        }
+                    }
+                }
+            </script>
+            <pre class="manual">
+<span class="frag1 irrelevant" hidden>&lt;!DOCTYPE html&gt;</span>
+<span class="frag1 irrelevant" hidden>&lt;html lang="en"&gt;</span>
+<span class="frag1 irrelevant" hidden>&lt;head&gt;</span>
+<span class="frag1 irrelevant" hidden>    &lt;meta charset="UTF-8"&gt;</span>
+<span class="frag1 irrelevant" hidden>    &lt;title&gt;Title&lt;/title&gt;</span>
+<span class="frag1 irrelevant" hidden>&lt;/head&gt;</span>
+<span class="frag1 irrelevant" hidden>&lt;body&gt;</span>
+<span>&lt;div id="nav-wrapper"&gt;</span>
+<span class="frag2 irrelevant" hidden>    &lt;img id="logo" src="https://www.scalawebtest.org/images/logo.png"&gt;</span>
+<span>    &lt;!-- Nav --&gt;</span>
+<span>    &lt;nav id="nav"&gt;</span>
+<span>        &lt;ul&gt;</span>
+<span>                &lt;li class="home"&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;</span>
+
+<span>                &lt;li&gt;&lt;a href="#" </span><span class="frag3 irrelevant" hidden>target="_blank"</span><span> title="elem1"&gt;elem1&lt;/a&gt;&lt;/li&gt;</span>
+
+<span>                &lt;li"&gt;&lt;a href="#" title="elem2"&gt;</span><span class="frag4 breaking" hidden>bad prefix </span><span class="frag5 irrelevant" hidden>lorem ipsum dolor and </span><span>elem2&lt;/a&gt;&lt;/li&gt;</span>
+<span>        &lt;/ul&gt;</span>
+<span>    &lt;/nav&gt;</span>
+<span>&lt;/div&gt;</span>
+<span class="frag1 irrelevant" hidden>&lt;/body&gt;</span>
+<span class="frag1 irrelevant" hidden>&lt;/html&gt;</span>
+        </pre>
+        </section>
+
         <section>
             <h3>Readable tests</h3>
             <pre class="stretch"><code>
@@ -261,137 +405,6 @@ Current document does not match provided gauge:
         &lt;/li&gt;
       &lt;/ul&gt;
             </code></pre>
-        </section>
-
-        <section data-background-image="lib/images/snap_gauge.jpg">
-            <a href="http://www.ebay.de/itm/Rachenlehre-35h5-Grenzrachenlehre-doppelmaeulig-RHV2363-/232108829224" class="img-source">by hr68</a>
-        </section>
-
-        <section data-background-image="lib/images/caliber.jpg">
-            <a href="https://www.youtube.com/watch?v=S6RMqubrUqM" class="img-source">by Grinsgesicht</a>
-        </section>
-
-        <section>
-            <style>
-                #nav
-                {
-                }
-
-                #nav-wrapper
-                {
-                    background: rgba(0,0,0,.1);
-                    position: relative;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                }
-
-                #nav > ul
-                {
-                    margin: 0;
-                    padding: 0;
-                    text-align: center;
-                }
-
-                #nav > ul > li
-                {
-                    display: inline-block;
-                    border-right: 1px solid;
-                    border-color: rgba(255,255,255,.1);
-                }
-
-                #nav > ul > li:last-child
-                {
-                    padding-right: 0;
-                    border-right: none;
-                }
-
-                #nav > ul > li > a,
-                #nav > ul > li > span
-                {
-                    display: inline-block;
-                    padding: 1.5em 1.5em;
-                    letter-spacing: 0.06em;
-                    text-decoration: none;
-                    text-transform: uppercase;
-                    font-size: 1.1em;
-                    outline: 0;
-                    color: #FFF;
-                }
-
-                #nav ul li.home a {
-                    color: #a4c326;
-                }
-            </style>
-            <div id="nav-wrapper">
-                <!-- Nav -->
-                <nav id="nav">
-                    <ul>
-                        <li class="home"><a href="#">Home</a></li>
-
-                        <li><a href="#" title="elem1">elem1</a></li>
-
-                        <li><a href="#" title="elem2">elem2</a></li>
-
-                    </ul>
-                </nav>
-            </div>
-
-            <pre>
-    <code>
-&lt;div id="nav-wrapper"&gt;
-    &lt;!-- Nav --&gt;
-    &lt;nav id="nav"&gt;
-        &lt;ul&gt;
-                &lt;li class="home"&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
-
-                &lt;li&gt;&lt;a href="#" title="elem1"&gt;elem1&lt;/a&gt;&lt;/li&gt;
-
-                &lt;li"&gt;&lt;a href="#" title="elem2"&gt;elem2&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-    &lt;/nav&gt;
-&lt;/div&gt;
-    </code>
-</pre>
-        </section>
-
-        <section>
-            <style>
-                pre.manual > span
-                {
-                    font-weight: bold;
-                    color: #0c3766;
-                }
-
-                pre.manual > span.irrelevant
-                {
-                    color: #6b6b6b;
-                }
-            </style>
-        <pre class="manual">
-<span class="frag1 irrelevant">&lt;!DOCTYPE html&gt;</span>
-<span class="frag1 irrelevant">&lt;html lang="en"&gt;</span>
-<span class="frag1 irrelevant">&lt;head&gt;</span>
-<span class="frag1 irrelevant">    &lt;meta charset="UTF-8"&gt;</span>
-<span class="frag1 irrelevant">    &lt;title&gt;Title&lt;/title&gt;</span>
-<span class="frag1 irrelevant">&lt;/head&gt;</span>
-<span class="frag1 irrelevant">&lt;body&gt;</span>
-<span>&lt;div id="nav-wrapper"&gt;</span>
-<span class="frag2 irrelevant">    &lt;img id="logo" src="https://www.scalawebtest.org/images/logo.png"&gt;</span>
-<span>    &lt;!-- Nav --&gt;</span>
-<span>    &lt;nav id="nav"&gt;</span>
-<span>        &lt;ul&gt;</span>
-<span>                &lt;li class="home"&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;</span>
-
-<span>                &lt;li&gt;&lt;a href="#" </span><span class="frag3 irrelevant">target="_blank"</span><span> title="elem1"&gt;elem1&lt;/a&gt;&lt;/li&gt;</span>
-
-<span>                &lt;li"&gt;&lt;a href="#" title="elem2"&gt;elem2&lt;/a&gt;&lt;/li&gt;</span>
-<span>        &lt;/ul&gt;</span>
-<span>    &lt;/nav&gt;</span>
-<span>&lt;/div&gt;</span>
-<span class="frag1 irrelevant">&lt;/body&gt;</span>
-<span class="frag1 irrelevant">&lt;/html&gt;</span>
-        </pre>
         </section>
 
         <section>

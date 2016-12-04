@@ -11,7 +11,7 @@ lazy val demo = project
   .settings(Defaults.itSettings: _*)
   .settings(
     libraryDependencies ++= Seq(
-      "org.scalawebtest" %% "core" % "1.0.4-SNAPSHOT",
+      "org.scalawebtest" %% "scalawebtest-core" % "1.0.4",
       "org.scalatest" %% "scalatest" % "3.0.0",
       "org.seleniumhq.selenium" % "selenium-java" % "2.53.1",
       "org.seleniumhq.selenium" % "selenium-htmlunit-driver" % "2.52.0",
