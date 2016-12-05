@@ -267,6 +267,9 @@ java.util.NoSuchElementException: None.get
                 pre.manual > span.breaking {
                     color: #6b280b;
                 }
+                pre.manual {
+                    width: 100%;
+                }
             </style>
             <script>
                 var currentFragment = 0;
@@ -301,7 +304,7 @@ java.util.NoSuchElementException: None.get
 
 <span>                &lt;li&gt;&lt;a href="#" </span><span class="frag3 irrelevant" hidden>target="_blank"</span><span> title="elem1"&gt;elem1&lt;/a&gt;&lt;/li&gt;</span>
 
-<span>                &lt;li"&gt;&lt;a href="#" title="elem2"&gt;</span><span class="frag4 breaking" hidden>bad prefix </span><span class="frag5 irrelevant" hidden>lorem ipsum dolor and </span><span>elem2&lt;/a&gt;&lt;/li&gt;</span>
+<span>                &lt;li"&gt;&lt;a href="#" title="elem</span><span class="frag6 breaking" hidden> bad </span><span>2</span><span class="frag7 irrelevant" hidden> lorem ipsum dolor</span><span>"&gt;</span><span class="frag4 breaking" hidden>bad prefix </span><span class="frag5 irrelevant" hidden>lorem ipsum dolor and </span><span>elem2&lt;/a&gt;&lt;/li&gt;</span>
 <span>        &lt;/ul&gt;</span>
 <span>    &lt;/nav&gt;</span>
 <span>&lt;/div&gt;</span>
