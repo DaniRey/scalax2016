@@ -27,7 +27,7 @@ class GaugeSpec extends DemoBaseSpec {
           </a>
         </li>
         <li>
-          <a href="/unic/ScalaWebTest/graphs/contributor">
+          <a href="/unic/ScalaWebTest/graphs/contributors">
             <span>@regex \d+</span>
             contributors
           </a>

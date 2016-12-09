@@ -17,7 +17,7 @@ class DemoBackup extends DemoBaseSpec {
         <!-- Nav -->
         <nav id="nav">
           <ul>
-            <li class="home"><a>Home</a></li>
+            <li class="home"><a>ScalaWebTest</a></li>
 
             <li><a href={documentation.path}>{documentation.name}</a></li>
             <li><a href={download.path}>{download.name}</a></li>
